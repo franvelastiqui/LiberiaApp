@@ -1,0 +1,67 @@
+﻿@model Carrito
+
+<form asp-action="Detalles">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3>@Model.Producto.Titulo</h3>
+                    <p>por @Model.Producto.Autor</p>
+                    <input type="hidden" asp-for="ProductoID"/>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-2">
+                    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <img src="@Model.Producto.RutaImagen" width="100%" />
+                </div>
+                <div class="col-6">
+                    <div class="col-6">
+                        <span class="badge bg-primary">@Model.Producto.Categoria!.Nombre</span>
+                    </div>
+                    <div class="row">
+                        <h6>ISBN : @Model.Producto.ISBN</h6>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-3">
+                            Precio
+                        </div>
+                        <div class="col-3">
+                            @Model.Producto.Precio.ToString("c")
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        @Model.Producto.Descripcion
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-control">
+                                <label asp-for="Cantidad"></label>
+                                <input asp-for="Cantidad" type="number" value="1" class="form-control text-end" />
+                                <span asp-validation-for="Cantidad" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

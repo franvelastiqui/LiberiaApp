@@ -1,0 +1,57 @@
+﻿@model ListaConPaginas<Categoria>
+
+@{
+    ViewData["Title"] = "Categoría";
+}
+
+<h2>Categorías</h2>
+
+<p>
+    <a asp-action="Actualizar">Agregar categoría</a>
+</p>
+
+<partial name="_CajaBusqueda" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-orden="@ViewData["OrdenNombre"]">Nombre</a> 
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(i => item.Nombre)
+                </th>
+                <td>
+                    <a asp-action="Actualizar" asp-route-id="@item.ID">Editar</a>
+                    <a asp-action="Eliminar" asp-route-id="@item.ID">Eliminar</a>
+                </td>
+            </tr>
+        }   
+    </tbody>
+</table>
+
+@{
+    var antDisabled = !Model.TienePaginaAnterior ? "disabled" : "";
+    var sigDisabled = !Model.TienePaginaSiguiente ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-orden="@ViewData["OrdenActual"]"
+   asp-route-indicePagina="@(Model.IndicePagina - 1)"
+   asp-route-busquedaActual="@ViewData["BusquedaActual"]"
+   class="btn btn-secondary @antDisabled">
+    Anterior
+</a>
+<a asp-action="Index"
+   asp-route-orden="@ViewData["OrdenActual"]"
+   asp-route-indicePagina="@(Model.IndicePagina + 1)"
+   asp-route-busquedaActual="@ViewData["BusquedaActual"]"
+   class="btn btn-secondary @sigDisabled">
+    Siguiente
+</a>

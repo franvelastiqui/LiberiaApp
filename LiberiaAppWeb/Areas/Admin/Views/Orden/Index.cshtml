@@ -1,0 +1,57 @@
+﻿@model IEnumerable<OrdenCompra>
+
+@{
+    ViewData["Title"] = "Órdenes";
+}
+
+<div class="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" role="button" id="menu" data-bs-toggle="dropdown" aria-expanded="false">
+        Estados
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="menu">
+        <li><a class="dropdown-item" asp-action="Index" asp-route-estado="@EstadoPago.EstadoPendiente"></a>Pago pendiente</li>
+        <li><a class="dropdown-item" asp-action="Index" asp-route-estado="@EstadoPago.EstadoAprobado"></a>Pago Aprobado</li>
+        <li><a class="dropdown-item" asp-action="Index" asp-route-estado="@EstadoOrden.EstadoProcesando"></a>Orden pendiente</li>
+        <li><a class="dropdown-item" asp-action="Index" asp-route-estado="@EstadoOrden.EstadoEnviado"></a>Orden entregada</li>
+    </ul>
+</div>
+<a asp-action="Index">Volver a lista completa</a>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Estado orden
+            </th>
+            <th>
+                Total
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Nombre
+                </td>
+                <td>
+                    @item.EstadoOrden
+                </td>
+                <td>
+                    @item.Total.ToString("c")
+                </td>
+                <th>
+                    <a asp-action="DetalleOrden" asp-route-id="@item.ID">Detalle de órden</a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

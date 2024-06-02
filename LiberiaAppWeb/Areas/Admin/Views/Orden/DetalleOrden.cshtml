@@ -1,0 +1,193 @@
+﻿@model OrdenVM
+
+@{
+    ViewData["Title"] = "Detalle de orden";
+}
+
+@TempData["ValoresNull"]
+
+<form asp-action="DetalleOrden">
+    <input type="hidden" asp-for="@Model.OrdenCompra.ID"/>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="OrdenCompra.Nombre" class="control-label"></label>
+                    @if(User.IsInRole("Admin") || User.IsInRole("Empleado"))
+                    {
+                        <input asp-for="OrdenCompra.Nombre" class="form-control" />
+                        <span asp-validation-for="OrdenCompra.Nombre" class="text-danger"></span>
+                    }
+                    else
+                    {
+                        <input readonly asp-for="OrdenCompra.Nombre" class="form-control" />
+                    }
+                </div>
+                <div class="form-group">
+                    <label asp-for="OrdenCompra.Nombre" class="control-label"></label>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Empleado"))
+                    {
+                        <input asp-for="OrdenCompra.Direccion" class="form-control" />
+                        <span asp-validation-for="OrdenCompra.Direccion" class="text-danger"></span>
+                    }
+                    else
+                    {
+                        <input readonly asp-for="OrdenCompra.Direccion" class="form-control" />
+                    }
+                </div>
+                <div class="form-group">
+                    <label asp-for="OrdenCompra.Ciudad" class="control-label"></label>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Empleado"))
+                    {
+                        <input asp-for="OrdenCompra.Ciudad" class="form-control" />
+                        <span asp-validation-for="OrdenCompra.Ciudad" class="text-danger"></span>
+                    }
+                    else
+                    {
+                        <input readonly asp-for="OrdenCompra.Ciudad" class="form-control" />
+                    }
+                </div>
+                <div class="form-group">
+                    <label asp-for="OrdenCompra.Provincia" class="control-label"></label>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Empleado"))
+                    {
+                        <input asp-for="OrdenCompra.Provincia" class="form-control" />
+                        <span asp-validation-for="OrdenCompra.Provincia" class="text-danger"></span>
+                    }
+                    else
+                    {
+                        <input readonly asp-for="OrdenCompra.Provincia" class="form-control" />
+                    }
+                </div>
+                <div class="form-group">
+                    <label asp-for="OrdenCompra.CodigoPostal" class="control-label"></label>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Empleado"))
+                    {
+                        <input asp-for="OrdenCompra.CodigoPostal" class="form-control" />
+                        <span asp-validation-for="OrdenCompra.CodigoPostal" class="text-danger"></span>
+                    }
+                    else
+                    {
+                        <input readonly asp-for="OrdenCompra.CodigoPostal" class="form-control" />
+                    }
+                </div>
+                <div class="form-group" style="">
+                    <label asp-for="OrdenCompra.UsuarioAplicacion.Email" class="control-label"></label>
+                    <input readonly asp-for="OrdenCompra.UsuarioAplicacion.Email" class="form-control" />
+                </div>
+                <div class="form-group" style="">
+                    <label asp-for="OrdenCompra.FechaOrden" class="control-label"></label>
+                    <input readonly value="@((Model.OrdenCompra.FechaOrden).ToString("dd/MM/yyyy"))" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="OrdenCompra.Transportista" class="control-label"></label>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Empleado"))
+                    {
+                        <input asp-for="OrdenCompra.Transportista" class="form-control" />
+                    }
+                    else
+                    {
+                        <input readonly asp-for="OrdenCompra.Transportista" class="form-control" />
+                    }
+                </div>
+                <div class="form-group" style="">
+                    <label asp-for="OrdenCompra.NumeroSeguimiento" class="control-label"></label>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Empleado"))
+                    {
+                        <input asp-for="OrdenCompra.NumeroSeguimiento" class="form-control" />
+                    }
+                    else
+                    {
+                        <input readonly asp-for="OrdenCompra.NumeroSeguimiento" class="form-control" />
+                    }
+                </div>
+                <div class="form-group" style="">
+                    <label asp-for="OrdenCompra.FechaDespacho" class="control-label"></label>
+                    <input readonly value="@((Model.OrdenCompra.FechaDespacho).ToString("dd/MM/yyyy"))" class="form-control" />
+                </div>
+                <div class="form-group" style="">
+                    @if (User.IsInRole("Admin") || User.IsInRole("Empleado"))
+                    {
+                        <label asp-for="OrdenCompra.SessionID" class="control-label"></label>
+                        <input readonly asp-for="OrdenCompra.SessionID" class="form-control" />
+
+                        <label asp-for="OrdenCompra.PaymentIntentID" class="control-label"></label>
+                        <input readonly asp-for="OrdenCompra.PaymentIntentID" class="form-control" />
+                    }
+                </div>
+                @if(Model.OrdenCompra.SessionID != null)
+                {
+                    <div class="form-group" style="">
+                        <label asp-for="OrdenCompra.FechaPago" class="control-label"></label>
+                        <input readonly value="@((Model.OrdenCompra.FechaPago).ToString("dd/MM/yyyy"))" class="form-control" />
+                    </div>
+                }
+                <div class="form-group" style="">
+                    <label asp-for="OrdenCompra.EstadoPago" class="control-label"></label>
+                    <input readonly asp-for="OrdenCompra.EstadoPago" class="form-control" />
+                </div>
+                @if (User.IsInRole("Admin") || User.IsInRole("Empleado"))
+                {
+                    <div class="form-group">
+                        <input type="submit" value="Actualizar orden" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Detalle de orden - @Model.OrdenCompra.EstadoOrden</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            @foreach(var item in Model.OrdenDetalle)
+                            {
+                                <li class="list-group-item">
+                                    <span>@item.Producto.Titulo</span>
+                                    <span>Cantidad: @item.Cantidad</span>
+                                    <span>Precio: @item.Producto.Precio.ToString("c")</span>
+                                    <div class="text-end">@((item.Cantidad * item.Precio).ToString("c"))</div>
+                                </li>
+                            }
+                            <li class="list-group-item">
+                                Total de compra: <strong><span class="text-end">@Model.OrdenCompra.Total.ToString("c") ARS</span></strong>
+                            </li>
+                        </ul>
+                    </div>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Empleado"))
+                    {
+                        @if(Model.OrdenCompra.EstadoOrden == EstadoOrden.EstadoAprobado)
+                        {
+                            <div class="form-group">
+                                <input asp-action="EnProceso" type="submit" value="Procesar orden" class="btn btn-primary" />
+                            </div>
+                        }
+                        @if (Model.OrdenCompra.EstadoOrden == EstadoOrden.EstadoProcesando)
+                        {
+                            <div class="form-group">
+                                <input asp-action="Entregado" type="submit" value="Enviar orden" class="btn btn-primary" />
+                            </div>
+                        }
+                        @if (Model.OrdenCompra.EstadoOrden != EstadoOrden.EstadoCancelado)
+                        {
+                            <div class="form-group">
+                                <input asp-action="CancelarOrden" type="submit" value="Cancelar orden" class="btn btn-primary" />
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        @if (User.IsInRole("Usuario") && Model.OrdenCompra.EstadoPago == EstadoPago.EstadoPendiente)
+                        {
+                            <div class="form-group">
+                                <input asp-action="PagarOrden" type="submit" value="Pagar" class="btn btn-primary" />
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

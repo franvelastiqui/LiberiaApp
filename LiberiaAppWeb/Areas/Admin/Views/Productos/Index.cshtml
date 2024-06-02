@@ -1,0 +1,82 @@
+﻿@model ListaConPaginas<Producto>
+
+@{
+    ViewData["Title"] = "Producto";
+}
+
+<h2>Productos</h2>
+
+<p>
+    <a asp-action="Actualizar">Agregar producto</a>
+</p>
+
+<partial name="_CajaBusqueda" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-orden="@ViewData["OrdenTitulo"]" asp-route-busquedaActual="@ViewData["BusquedaActual"]">Título</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-orden="@ViewData["OrdenISBN"]" asp-route-busquedaActual="@ViewData["BusquedaActual"]">ISBN</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-orden="@ViewData["OrdenAutor"]" asp-route-busquedaActual="@ViewData["BusquedaActual"]">Autor</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-orden="@ViewData["OrdenPrecio"]" asp-route-busquedaActual="@ViewData["BusquedaActual"]">Precio</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-orden="@ViewData["OrdenCategoria"]" asp-route-busquedaActual="@ViewData["BusquedaActual"]">Categoría</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(i => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(i => item.ISBN)
+                </td>
+                <td>
+                    @Html.DisplayFor(i => item.Autor)
+                </td>
+                <td>
+                    @Html.DisplayFor(i => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(i => item.Categoria!.Nombre)
+                </td>
+                <td>
+                    <a asp-action="Actualizar" asp-route-id="@item.ID">Editar</a>
+                    <a asp-action="Eliminar" asp-route-id="@item.ID">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var antDisabled = !Model.TienePaginaAnterior ? "disabled" : "";
+    var sigDisabled = !Model.TienePaginaSiguiente ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-orden="@ViewData["OrdenActual"]"
+   asp-route-indicePagina="@(Model.IndicePagina - 1)"
+   asp-route-busquedaActual="@ViewData["BusquedaActual"]"
+   class="btn btn-secondary @antDisabled">
+    Anterior
+</a>
+<a asp-action="Index"
+   asp-route-orden="@ViewData["OrdenActual"]"
+   asp-route-indicePagina="@(Model.IndicePagina + 1)"
+   asp-route-busquedaActual="@ViewData["BusquedaActual"]"
+   class="btn btn-secondary @sigDisabled">
+    Siguiente
+</a>

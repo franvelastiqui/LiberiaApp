@@ -1,0 +1,51 @@
+﻿@model Producto
+
+@{
+    ViewData["Title"] = "Prodcuto";
+}
+
+<h2>Eliminar producto</h2>
+
+<p class="text-danger">@ViewData["MensajeError"]</p>
+
+<h3>¿Está seguro que desea eliminar este registro?</h3>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Titulo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.Titulo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.ISBN)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.ISBN)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Precio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.Precio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Autor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.Autor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Categoria)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.CategoriaID)
+        </dd>
+    </dl>
+
+    <form asp-action="Eliminar">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver</a>
+    </form>
+</div>

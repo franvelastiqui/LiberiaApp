@@ -1,0 +1,51 @@
+﻿@model CarritoVM
+
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <div>
+                <h3>Carrito de compra</h3>
+                <hr />
+            </div>
+            @foreach(var carrito in Model.ListaCarritos)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="@carrito.Producto.RutaImagen" class="w-100"/>
+                            </div>
+                            <div class="col-3">
+                                <p>@carrito.Producto.Titulo</p>
+                                <p>@carrito.Producto.Descripcion</p>
+                            </div>
+                            <div class="col-3">
+                                <h5>@carrito.Producto.Precio</h5> x <h5>@carrito.Cantidad</h5>
+                            </div>
+                            <div class="col-3">
+                                <a asp-action="Agregar" asp-route-id="@carrito.ID" class="btn btn-link">Agregar</a>
+                                <a asp-action="Quitar" asp-route-id="@carrito.ID" class="btn btn-link">Quitar</a>
+                                <a asp-action="Eliminar" asp-route-id="@carrito.ID" class="btn btn-link">Remover</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-outline">
+                        <label class="form-label">TOTAL</label>
+                    </div>
+                    <label>@Model.OrdenCompra.Total.ToString("c")</label>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-outline">
+                        <a asp-controller="Carrito" asp-action="Suma" class="btn btn-warning">Pagar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

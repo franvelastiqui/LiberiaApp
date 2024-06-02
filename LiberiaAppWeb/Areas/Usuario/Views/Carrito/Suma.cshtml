@@ -1,0 +1,65 @@
+﻿@model CarritoVM
+
+<form asp-action="">
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <h5 class="card-header">
+                    Detalles de la compra
+                </h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" asp-for="@Model.OrdenCompra.Nombre" class="form-control" />
+                                <label class="form-label">Nombre</label>
+                            </div>
+                        </div>
+                        <div class="form-outline">
+                            <input type="text" asp-for="@Model.OrdenCompra.Direccion" class="form-control" />
+                            <label class="form-label">Dirección</label>
+                        </div>
+                        <div class="form-outline">
+                            <input type="text" asp-for="@Model.OrdenCompra.Ciudad" class="form-control" />
+                            <label class="form-label">Ciudad</label>
+                        </div>
+                        <div class="form-outline">
+                            <input type="text" asp-for="@Model.OrdenCompra.Provincia" class="form-control" />
+                            <label class="form-label">Provincia</label>
+                        </div>
+                        <div class="form-outline">
+                            <input type="text" asp-for="@Model.OrdenCompra.CodigoPostal" class="form-control" />
+                            <label class="form-label">Código Postal</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <h5 class="card-header">
+                    Suma
+                </h5>
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach(var detalles in Model.ListaCarritos)
+                        {
+                            <li class="list-group-item">
+                                <span>@detalles.Producto.Titulo</span>
+                                <span>Cantidad = @detalles.Cantidad</span>
+                                <span>@(((detalles.Producto.Precio) * (decimal)(@detalles.Cantidad)).ToString("c"))</span>
+                            </li>
+                        }
+                        <li class="list-group-item">
+                            <div>
+                                <strong>TOTAL</strong>
+                            </div>
+                            <span>@Model.OrdenCompra.Total.ToString("c")</span>
+                        </li>
+                    </ul>
+                    <button asp-action="Suma" type="submit" btn btn-primary>Realizar compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

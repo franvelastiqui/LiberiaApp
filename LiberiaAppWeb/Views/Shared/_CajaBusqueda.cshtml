@@ -1,0 +1,9 @@
+﻿<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Buscar: <input type="text" name="busqueda" value="@ViewData["BusquedaActual"]" />
+            <input type="submit" value="Buscar" class="btn btn-secondary" /> |
+            <a asp-action="Index">Volver a lista completa</a>
+        </p>
+    </div>
+</form>
