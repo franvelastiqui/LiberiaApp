@@ -19,7 +19,7 @@ El administrador podrá hacer todo lo de arriba y:
 -Agregar, eliminar y modificar los libros a vender
 -Agregar, eliminar y modificar las categorías asignadas de los libros
 
-La aplicación hace uso de la API brindada por Stripe para gestionar los pagos. Para más información, el sitio web docs.stripe.com/api.
+La aplicación hace uso de la API brindada por Stripe para gestionar los pagos. Para más información, el sitio web https://docs.stripe.com/api.
 
 Al momento de hace un pago, seleccione la opción de Argentina en https://docs.stripe.com/testing?locale=es-419&testing-method=card-numbers. Este link provee distintas tarjetas de prueba
 
