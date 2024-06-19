@@ -23,9 +23,9 @@
                                 <h5>@carrito.Producto.Precio</h5> x <h5>@carrito.Cantidad</h5>
                             </div>
                             <div class="col-3">
-                                <a asp-action="Agregar" asp-route-id="@carrito.ID" class="btn btn-link">Agregar</a>
-                                <a asp-action="Quitar" asp-route-id="@carrito.ID" class="btn btn-link">Quitar</a>
-                                <a asp-action="Eliminar" asp-route-id="@carrito.ID" class="btn btn-link">Remover</a>
+                                <a asp-action="Agregar" asp-route-id="@carrito.ID" class="btn btn-link"><i class="bi bi-plus-circle"></i></a>
+                                <a asp-action="Quitar" asp-route-id="@carrito.ID" class="btn btn-link"><i class="bi bi-dash-circle"></i></a>
+                                <a asp-action="Eliminar" asp-route-id="@carrito.ID" class="btn btn-link"><i class="bi bi-trash"></i></a>
                             </div>
                         </div>
                     </div>
